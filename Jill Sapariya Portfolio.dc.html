@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>Jill Sapariya — UI/UX &amp; Product Designer | AI &amp; Enterprise UX</title>
+<meta name="description" content="Jill Sapariya is a UI/UX &amp; Product Designer designing enterprise applications, AI-driven products, document-management experiences, websites and digital products." />
+<meta property="og:title" content="Jill Sapariya — UI/UX &amp; Product Designer" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 68px; -webkit-text-size-adjust: 100%; background: #1A2420; }
+  body { margin: 0; background: #1A2420; color: #FBF8F5; font-family: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif; font-size: 18px; line-height: 1.6; -webkit-font-smoothing: antialiased; text-wrap: pretty; overflow-x: hidden; }
+  h1, h2, h3, h4, p, figure, blockquote, pre { margin: 0; }
+  ul, ol { margin: 0; padding: 0; list-style: none; }
+  a { color: #A7BC97; text-decoration: none; }
+  a:hover { color: #C2D4B4; }
+  button { font: inherit; color: inherit; background: none; border: none; padding: 0; cursor: pointer; }
+  :focus-visible { outline: 2px solid #A7BC97; outline-offset: 3px; border-radius: 5px; }
+  ::selection { background: rgba(255,255,255,.14); }
+  @keyframes jsSpin { to { transform: rotate(360deg); } }
+  @keyframes jsSpinRev { to { transform: rotate(-360deg); } }
+  @keyframes jsRun { from { stroke-dashoffset: 1240; } to { stroke-dashoffset: 0; } }
+  @keyframes jsBreathe { 0%,100% { opacity: .3; } 50% { opacity: .9; } }
+  @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; } }
+</style>
+</helmet>
+
+<header style="position:sticky;top:0;z-index:90;background:rgba(26,36,32,.94);backdrop-filter:blur(18px) saturate(1.3);-webkit-backdrop-filter:blur(18px) saturate(1.3);border-bottom:1px solid rgba(255,255,255,.1)">
+  <nav aria-label="Primary" style="max-width:1240px;margin:0 auto;padding:0 clamp(20px,4vw,56px);display:flex;align-items:center;justify-content:space-between;gap:20px;height:54px">
+    <a href="#top" style="display:flex;align-items:center;gap:9px;color:#F5F8F5;flex-shrink:0" style-hover="color:#F5F8F5">
+      <span style="width:22px;height:22px;border-radius:6px;background:#A7BC97;display:flex;align-items:center;justify-content:center;color:#16201C;font-size:10.5px;font-weight:700">JS</span>
+      <span style="font-size:14.5px;font-weight:600;letter-spacing:-.012em">Jill Sapariya</span>
+    </a>
+    <sc-if value="{{ wide }}" hint-placeholder-val="{{ true }}">
+      <ul style="display:flex;align-items:center;gap:2px">
+        <sc-for list="{{ navLinks }}" as="link" hint-placeholder-count="5">
+          <li><a href="{{ link.href }}" style="display:block;padding:6px 12px;font-size:14px;font-weight:500;border-radius:100px;color:{{ link.color }};transition:color .2s,background .2s" style-hover="background:rgba(255,255,255,.09);color:#F5F8F5">{{ link.label }}</a></li>
+        </sc-for>
+      </ul>
+    </sc-if>
+    <div style="display:flex;align-items:center;gap:10px;flex-shrink:0">
+      <sc-if value="{{ wide }}" hint-placeholder-val="{{ true }}">
+        <a href="#contact" style="display:inline-flex;align-items:center;padding:7px 16px;border-radius:100px;background:#A7BC97;color:#16201C;font-size:13.5px;font-weight:600;transition:transform .2s cubic-bezier(.22,1,.36,1),background .2s" style-hover="background:#A7BC97;color:#16201C;transform:translateY(-1px)">Let's Connect</a>
+      </sc-if>
+      <sc-if value="{{ narrow }}" hint-placeholder-val="{{ false }}">
+        <button type="button" onClick="{{ toggleMenu }}" aria-label="Toggle navigation" aria-expanded="{{ menuOpen }}" style="width:44px;height:38px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;border:1px solid rgba(255,255,255,.16);border-radius:100px">
+          <span style="display:block;width:15px;height:1.5px;background:#F5F8F5;border-radius:2px;transition:transform .3s;transform:{{ barTop }}"></span>
+          <span style="display:block;width:15px;height:1.5px;background:#F5F8F5;border-radius:2px;transition:transform .3s;transform:{{ barBottom }}"></span>
+        </button>
+      </sc-if>
+    </div>
+  </nav>
+  <div aria-hidden="true" style="position:absolute;left:0;bottom:-1px;height:2px;width:{{ progress }};background:#A7BC97;transition:width .12s linear"></div>
+  <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+    <div style="border-top:1px solid rgba(255,255,255,.1);background:#1A2420;padding:10px clamp(20px,5vw,28px) 22px">
+      <ul style="display:flex;flex-direction:column">
+        <sc-for list="{{ navLinks }}" as="link" hint-placeholder-count="5">
+          <li><a href="{{ link.href }}" onClick="{{ closeMenu }}" style="display:flex;align-items:center;justify-content:space-between;padding:14px 2px;font-size:20px;font-weight:500;letter-spacing:-.02em;color:#F5F8F5;border-bottom:1px solid rgba(255,255,255,.1)">{{ link.label }} <span style="color:#98A29C;font-size:14px">&rarr;</span></a></li>
+        </sc-for>
+      </ul>
+      <a href="#contact" onClick="{{ closeMenu }}" style="margin-top:16px;display:flex;align-items:center;justify-content:center;padding:14px;border-radius:100px;background:#A7BC97;color:#16201C;font-size:16px;font-weight:600">Let's Connect</a>
+    </div>
+  </sc-if>
+</header>
+
+<main id="top">
+
+  <!-- ============ HERO (video) ============ -->
+  <section data-screen-label="Hero" style="position:relative;min-height:calc(100vh - 54px);display:flex;flex-direction:column;padding:clamp(38px,5.5vw,76px) clamp(20px,4vw,56px);overflow:hidden;background:#16201C">
+    <div style="position:absolute;inset:0;z-index:0;overflow:hidden">
+      <video ref="{{ videoRef }}" src="uploads/Character_typing_on_keyboard_202609011559.mp4" autoplay="" loop="" muted="" playsinline="" preload="auto" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;transform:scale(1.3);transform-origin:center;filter:contrast(1.04) saturate(1.04)"></video>
+      <div style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(to bottom,rgba(26,36,32,.34) 0%,rgba(26,36,32,0) 16%,rgba(26,36,32,0) 52%,rgba(26,36,32,.72) 86%,rgba(26,36,32,.94) 100%)"></div>
+      <div style="position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 80% 70% at 50% 46%,rgba(26,36,32,0) 44%,rgba(26,36,32,.42) 100%)"></div>
+    </div>
+
+    <div style="flex:1 1 auto;min-height:38vh"></div>
+
+    <div style="position:relative;z-index:2;display:flex;align-items:flex-end;justify-content:space-between;gap:clamp(32px,5vw,80px);flex-wrap:wrap">
+      <div style="flex:1 1 340px;min-width:min(100%,300px);display:flex;flex-direction:column;gap:clamp(18px,2vw,26px)">
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <h1 style="font-size:clamp(46px,7.8vw,100px);line-height:.96;font-weight:800;letter-spacing:-.035em;text-wrap:balance;color:#ffffff">Jill Sapariya</h1>
+          <p style="font-size:clamp(16px,1.7vw,22px);font-weight:400;letter-spacing:.01em;color:#ffffff">UI/UX &amp; Product Designer</p>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:12px">
+          <a href="#work" style="display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 clamp(22px,2.4vw,30px);border-radius:999px;background:#ffffff;color:#16201C;font-size:clamp(14px,1.1vw,15px);font-weight:600;letter-spacing:.01em;border:1px solid #ffffff;transition:transform .25s ease,background .25s ease" style-hover="background:rgba(255,255,255,.88);transform:translateY(-2px);color:#16201C">View Work</a>
+          <a href="#contact" style="display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 clamp(22px,2.4vw,30px);border-radius:999px;background:rgba(255,255,255,.08);color:#ffffff;font-size:clamp(14px,1.1vw,15px);font-weight:500;letter-spacing:.01em;border:1px solid rgba(255,255,255,.2);backdrop-filter:blur(14px);transition:transform .25s ease,background .25s ease" style-hover="background:rgba(255,255,255,.11);transform:translateY(-2px);color:#ffffff">Get in Touch</a>
+        </div>
+      </div>
+      <p style="flex:0 1 auto;text-align:{{ statementAlign }};font-size:clamp(23px,3vw,40px);line-height:1.22;font-weight:300;letter-spacing:-.015em;color:#ffffff">crafting interfaces<br />that feel alive</p>
+    </div>
+  </section>
+
+  <!-- ============ ABOUT ============ -->
+  <section id="about" data-screen-label="About" style="position:relative;overflow:hidden;background:#1A2420;padding:clamp(64px,7vw,116px) 0">
+    <div aria-hidden="true" style="position:absolute;top:0;right:0;width:min(460px,46vw);height:360px;pointer-events:none;background-image:radial-gradient(rgba(167,188,151,.3) 1px,transparent 1px);background-size:22px 22px;mask-image:radial-gradient(120% 105% at 100% 0%,#000 6%,transparent 66%);-webkit-mask-image:radial-gradient(120% 105% at 100% 0%,#000 6%,transparent 66%)"></div>
+    <div style="position:relative;max-width:1240px;margin:0 auto;padding:0 clamp(20px,4vw,56px)">
+      <div data-reveal="0" style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:clamp(20px,3vw,56px)">
+        <div style="flex:1 1 480px;min-width:min(100%,320px)">
+          <span style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.16em;color:#A7BC97">01 / ABOUT</span>
+          <p style="margin-top:18px;font-family:'Instrument Serif',Georgia,serif;font-size:clamp(32px,4.4vw,62px);line-height:1.08;letter-spacing:-.02em;color:#F5F8F5">Make complex products feel easier to understand and easier to use.</p>
+        </div>
+        <div style="flex:1 1 320px;min-width:min(100%,280px);display:flex;flex-direction:column;gap:14px;max-width:48ch">
+          <p style="font-size:15.5px;line-height:1.65;color:#B4BEB8">I'm a UI/UX &amp; Product Designer focused on creating clear, useful and thoughtful digital experiences. My work spans enterprise applications, AI-driven products, document intelligence, websites and dashboards.</p>
+          <p style="font-size:15.5px;line-height:1.65;color:#B4BEB8">I work at the intersection of product thinking, visual design, technology and emerging AI workflows — shipping product work at N-Labs.AI / Kavion.ai, based in India.</p>
+        </div>
+      </div>
+
+      <ul data-reveal="1" style="margin-top:clamp(32px,3.6vw,52px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:clamp(12px,1.4vw,18px)">
+        <sc-for list="{{ capabilities }}" as="c" hint-placeholder-count="4">
+          <li style="background:#1F2A26;border:1px solid rgba(255,255,255,.09);border-radius:16px;padding:22px 20px;display:flex;flex-direction:column;gap:9px">
+            <span style="font-size:15px;font-weight:600;letter-spacing:-.015em;color:#F5F8F5">{{ c.title }}</span>
+            <span style="font-size:13.5px;line-height:1.5;color:#C3CCC7">{{ c.body }}</span>
+          </li>
+        </sc-for>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ CLIENT WORK ============ -->
+  <section id="work" data-screen-label="Client Work" style="position:relative;overflow:hidden;background:#1A2420;border-top:1px solid rgba(255,255,255,.1);padding:clamp(64px,7vw,116px) 0">
+    <div aria-hidden="true" style="position:absolute;top:-130px;right:-140px;width:min(460px,62vw);aspect-ratio:1;pointer-events:none">
+      <svg viewBox="0 0 400 400" width="100%" height="100%" fill="none" stroke="#A7BC97" stroke-width="1">
+        <g style="transform-origin:200px 200px;animation:jsSpin 280s linear infinite">
+          <circle cx="200" cy="200" r="196" stroke-opacity=".24"></circle>
+          <circle cx="200" cy="200" r="150" stroke-opacity=".17" stroke-dasharray="2 9"></circle>
+          <circle cx="200" cy="200" r="104" stroke-opacity=".24"></circle>
+          <circle cx="200" cy="200" r="58" stroke-opacity=".17" stroke-dasharray="2 9"></circle>
+          <circle cx="200" cy="4" r="3.4" fill="#A7BC97" stroke="none" style="animation:jsBreathe 8s ease-in-out infinite"></circle>
+          <circle cx="350" cy="200" r="3" fill="#A7BC97" stroke="none" style="animation:jsBreathe 8s ease-in-out 2s infinite"></circle>
+          <circle cx="200" cy="304" r="3" fill="#A7BC97" stroke="none" style="animation:jsBreathe 8s ease-in-out 4s infinite"></circle>
+        </g>
+      </svg>
+    </div>
+    <div style="position:relative;max-width:1240px;margin:0 auto;padding:0 clamp(20px,4vw,56px)">
+      <div data-reveal="0" style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:clamp(20px,3vw,56px)">
+        <div style="flex:1 1 460px;min-width:min(100%,320px)">
+          <span style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.16em;color:#A7BC97">02 / WORK</span>
+          <h2 style="margin-top:16px;font-size:clamp(26px,3.1vw,42px);line-height:1.1;font-weight:700;letter-spacing:-.03em;color:#F5F8F5;max-width:22ch">Products shipped across enterprise, AI and consumer platforms.</h2>
+        </div>
+        <p style="flex:1 1 320px;min-width:min(100%,280px);font-size:15.5px;line-height:1.65;color:#B4BEB8;max-width:48ch">Shipped product work at N-Labs.AI / Kavion.ai spanning enterprise applications, AI platforms, dashboards and consumer products. Happy to walk through the detail of any of these in conversation.</p>
+      </div>
+
+      <div data-reveal="1" style="margin-top:clamp(32px,3.6vw,52px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:clamp(12px,1.4vw,18px)">
+        <sc-for list="{{ clientWork }}" as="w" hint-placeholder-count="8">
+          <article style="border:1px solid rgba(255,255,255,.09);border-radius:16px;background:#1F2A26;padding:clamp(20px,2vw,26px);display:flex;flex-direction:column;gap:12px;transition:transform .3s cubic-bezier(.22,1,.36,1),border-color .3s,background .3s" style-hover="transform:translateY(-3px);border-color:rgba(167,188,151,.4);background:#232F2A">
+            <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px">
+              <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#A7BC97">{{ w.n }}</span>
+              <span style="font-size:10.5px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:#98A29C">{{ w.category }}</span>
+            </div>
+            <div>
+              <h3 style="font-size:20px;font-weight:600;letter-spacing:-.022em;line-height:1.2;color:#F5F8F5">{{ w.title }}</h3>
+              <p style="margin-top:4px;font-size:12.5px;color:#98A29C">{{ w.full }}</p>
+            </div>
+            <p style="font-size:14.5px;line-height:1.55;color:#B4BEB8">{{ w.desc }}</p>
+            <div style="margin-top:auto;display:flex;flex-wrap:wrap;gap:6px;padding-top:6px">
+              <sc-for list="{{ w.tags }}" as="t" hint-placeholder-count="2">
+                <span style="font-size:11.5px;color:#C3CCC7;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);padding:4px 11px;border-radius:100px;white-space:nowrap">{{ t }}</span>
+              </sc-for>
+            </div>
+          </article>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ THE LAB ============ -->
+  <sc-if value="{{ showLab }}" hint-placeholder-val="{{ true }}">
+  <section id="lab" data-screen-label="The Lab" style="position:relative;overflow:hidden;background:#1A2420;border-top:1px solid rgba(255,255,255,.1);padding:clamp(64px,7vw,116px) 0">
+    <div aria-hidden="true" style="position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(167,188,151,.16) 1px,transparent 1px),linear-gradient(90deg,rgba(167,188,151,.16) 1px,transparent 1px);background-size:64px 64px;mask-image:radial-gradient(90% 55% at 50% 0%,#000 0%,transparent 72%);-webkit-mask-image:radial-gradient(90% 55% at 50% 0%,#000 0%,transparent 72%)"></div>
+    <div style="position:relative;max-width:1240px;margin:0 auto;padding:0 clamp(20px,4vw,56px)">
+      <div data-reveal="0" style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:clamp(20px,3vw,56px)">
+        <div style="flex:1 1 460px;min-width:min(100%,320px)">
+          <span style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.16em;color:#A7BC97">03 / THE LAB</span>
+          <h2 style="margin-top:16px;font-size:clamp(26px,3.1vw,42px);line-height:1.1;font-weight:700;letter-spacing:-.03em;color:#F5F8F5;max-width:22ch">A product I designed and built myself. Live and clickable.</h2>
+        </div>
+        <p style="flex:1 1 320px;min-width:min(100%,280px);font-size:15.5px;line-height:1.65;color:#B4BEB8;max-width:48ch">Real workflows, real edge cases, nothing simplified for show. Click anything — it's the deployed build, not a mockup.</p>
+      </div>
+
+      <div data-reveal="1" style="margin-top:clamp(32px,3.6vw,52px);display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px">
+        <div style="display:flex;align-items:center;gap:11px">
+          <span style="width:26px;height:26px;border-radius:50%;background:#A7BC97;color:#16201C;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:500">S</span>
+          <span style="display:flex;flex-direction:column;line-height:1.25">
+            <span style="font-size:15px;font-weight:600;letter-spacing:-.015em;color:#F5F8F5">Swift Invoice</span>
+            <span style="font-size:11.5px;color:#A7BC97">Invoicing &amp; billing product</span>
+          </span>
+        </div>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.12em;color:#98A29C">MORE DEMOS COMING</span>
+      </div>
+
+      <div data-reveal="2" style="margin-top:14px;border:1px solid rgba(255,255,255,.09);border-radius:16px;background:#1F2A26;box-shadow:0 30px 70px -40px rgba(0,0,0,.6);overflow:hidden">
+        <div style="display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03)">
+          <div style="display:flex;gap:5px">
+            <span style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.15)"></span>
+            <span style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.15)"></span>
+            <span style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.15)"></span>
+          </div>
+          <div style="flex:1;display:flex;justify-content:center;min-width:0">
+            <span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#98A29C;background:rgba(255,255,255,.05);padding:3px 14px;border-radius:100px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">swift-invoice-tan.vercel.app</span>
+          </div>
+          <a href="https://swift-invoice-tan.vercel.app/" target="_blank" rel="noopener" style="font-size:11.5px;font-weight:500;color:#A7BC97;white-space:nowrap" style-hover="color:#F5F8F5">Open live &#8599;</a>
+        </div>
+        <div ref="{{ frameRef }}" style="position:relative;width:100%;height:600px;overflow:hidden;background:#F5F8F5">
+          <iframe ref="{{ iframeRef }}" src="https://swift-invoice-tan.vercel.app/" title="Swift Invoice — live product" loading="lazy" style="position:absolute;top:0;left:0;width:1280px;height:800px;border:0;transform-origin:top left;background:#F5F8F5"></iframe>
+        </div>
+      </div>
+
+      <p data-reveal="1" style="margin-top:12px;font-size:12.5px;color:#98A29C">Embedded live from the deployed build. If it doesn't load in this frame, <a href="https://swift-invoice-tan.vercel.app/" target="_blank" rel="noopener" style="color:#A7BC97">open it in a new tab</a>.</p>
+
+      <div data-reveal="1" style="margin-top:clamp(24px,2.6vw,36px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:clamp(16px,2vw,32px)">
+        <sc-for list="{{ demoNotes }}" as="n" hint-placeholder-count="4">
+          <div style="padding-top:14px;border-top:1px solid rgba(255,255,255,.1)">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.12em;color:#A7BC97">{{ n.k }}</div>
+            <p style="margin-top:9px;font-size:13.5px;line-height:1.5;color:#C3CCC7">{{ n.v }}</p>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+  </sc-if>
+
+  <!-- ============ AI WORKFLOW ============ -->
+  <section id="approach" data-screen-label="AI Workflow" style="position:relative;overflow:hidden;background:#1A2420;border-top:1px solid rgba(255,255,255,.1);padding:clamp(64px,7vw,116px) 0">
+    <div aria-hidden="true" style="position:absolute;left:0;right:0;top:0;height:34px;pointer-events:none">
+      <svg viewBox="0 0 1240 34" width="100%" height="100%" preserveAspectRatio="none" fill="none">
+        <path d="M0 17H1240" stroke="rgba(255,255,255,.1)"></path>
+        <path d="M0 17H1240" stroke="#A7BC97" stroke-width="2" stroke-dasharray="120 1120" style="animation:jsRun 7s linear infinite"></path>
+      </svg>
+    </div>
+    <div style="position:relative;max-width:1240px;margin:0 auto;padding:0 clamp(20px,4vw,56px)">
+      <div data-reveal="0" style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:clamp(20px,3vw,56px)">
+        <div style="flex:1 1 520px;min-width:min(100%,320px)">
+          <span style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.16em;color:#A7BC97">04 / AI WORKFLOW</span>
+          <h2 style="margin-top:16px;font-size:clamp(26px,3.1vw,42px);line-height:1.1;font-weight:700;letter-spacing:-.03em;color:#F5F8F5;max-width:28ch">I don't use AI to replace design thinking. I use it to move faster, explore further and spend more time on the decisions that matter.</h2>
+        </div>
+        <p style="flex:1 1 320px;min-width:min(100%,280px);font-size:15.5px;line-height:1.65;color:#B4BEB8;max-width:48ch">I work with modern AI tools throughout the process — research, ideation, visual exploration, content refinement, prototyping and the repetitive parts. AI is part of my toolkit, not a substitute for product thinking.</p>
+      </div>
+
+      <ol data-reveal="1" style="margin-top:clamp(32px,3.6vw,52px);display:flex;flex-direction:column">
+        <sc-for list="{{ aiSteps }}" as="s" hint-placeholder-count="4">
+          <li style="display:flex;gap:clamp(14px,2vw,28px);padding:clamp(18px,2vw,26px) 0;border-top:1px solid rgba(255,255,255,.1)">
+            <span style="flex:0 0 34px;height:34px;border-radius:50%;border:1px solid rgba(167,188,151,.42);color:#A7BC97;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:11px">{{ s.n }}</span>
+            <span style="flex:1 1 auto;min-width:0;display:flex;flex-wrap:wrap;gap:10px 28px;align-items:baseline;justify-content:space-between">
+              <span style="flex:0 1 auto;font-size:19px;font-weight:600;letter-spacing:-.022em;color:#F5F8F5">{{ s.title }}</span>
+              <span style="flex:1 1 340px;display:flex;flex-wrap:wrap;gap:6px">
+                <sc-for list="{{ s.items }}" as="it" hint-placeholder-count="4">
+                  <span style="font-size:12.5px;color:#C3CCC7;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);padding:4px 11px;border-radius:100px;white-space:nowrap">{{ it }}</span>
+                </sc-for>
+              </span>
+            </span>
+          </li>
+        </sc-for>
+      </ol>
+
+      <div data-reveal="1" style="margin-top:clamp(24px,2.6vw,36px);padding-top:clamp(20px,2.4vw,30px);border-top:1px solid rgba(255,255,255,.1);display:flex;flex-wrap:wrap;align-items:center;gap:8px">
+        <sc-for list="{{ aiChain }}" as="c" hint-placeholder-count="7">
+          <span style="display:flex;align-items:center;gap:8px">
+            <span style="font-size:13.5px;font-weight:500;letter-spacing:-.01em;color:{{ c.fg }};background:{{ c.bg }};border:1px solid {{ c.border }};padding:8px 14px;border-radius:100px;white-space:nowrap">{{ c.label }}</span>
+            <span style="color:rgba(255,255,255,.4);font-size:12px">{{ c.arrow }}</span>
+          </span>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ EXPERIENCE ============ -->
+  <section id="experience" data-screen-label="Experience" style="position:relative;overflow:hidden;background:#1A2420;border-top:1px solid rgba(255,255,255,.1);padding:clamp(64px,7vw,116px) 0">
+    <div aria-hidden="true" style="position:absolute;bottom:-190px;left:-170px;width:min(520px,70vw);aspect-ratio:1;pointer-events:none">
+      <svg viewBox="0 0 400 400" width="100%" height="100%" fill="none" stroke="#A7BC97" stroke-width="1">
+        <g style="transform-origin:200px 200px;animation:jsSpinRev 320s linear infinite">
+          <circle cx="200" cy="200" r="196" stroke-opacity=".2"></circle>
+          <circle cx="200" cy="200" r="132" stroke-opacity=".15" stroke-dasharray="2 10"></circle>
+          <path d="M200 4a196 196 0 0 1 138.6 57.4" stroke-opacity=".5" stroke-width="1.6"></path>
+        </g>
+      </svg>
+    </div>
+    <div style="position:relative;max-width:1240px;margin:0 auto;padding:0 clamp(20px,4vw,56px)">
+      <div data-reveal="0" style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:clamp(20px,3vw,56px)">
+        <div style="flex:1 1 460px;min-width:min(100%,320px)">
+          <span style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.16em;color:#A7BC97">05 / EXPERIENCE</span>
+          <h2 style="margin-top:16px;font-size:clamp(26px,3.1vw,42px);line-height:1.1;font-weight:700;letter-spacing:-.03em;color:#F5F8F5;max-width:22ch">Where I've worked</h2>
+        </div>
+        <p style="flex:1 1 320px;min-width:min(100%,280px);font-size:15.5px;line-height:1.65;color:#B4BEB8;max-width:48ch">Design and front-end roles across product companies, plus operations and internship experience earlier on.</p>
+      </div>
+
+      <ul style="margin-top:clamp(32px,3.6vw,52px);display:flex;flex-direction:column">
+        <sc-for list="{{ experience }}" as="e" hint-placeholder-count="3">
+          <li data-reveal="0" style="display:flex;flex-wrap:wrap;gap:10px clamp(24px,4vw,72px);padding:clamp(22px,2.4vw,32px) 0;border-top:1px solid rgba(255,255,255,.1)">
+            <div style="flex:0 0 190px;min-width:170px">
+              <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#A7BC97;line-height:1.5">{{ e.dates }}</div>
+              <div style="margin-top:8px;font-size:clamp(19px,1.7vw,23px);font-weight:600;letter-spacing:-.022em;color:#F5F8F5">{{ e.company }}</div>
+              <div style="margin-top:3px;font-size:14px;color:#98A29C">{{ e.role }}</div>
+            </div>
+            <ul style="flex:1 1 420px;min-width:min(100%,300px);display:flex;flex-direction:column;gap:9px">
+              <sc-for list="{{ e.points }}" as="pt" hint-placeholder-count="3">
+                <li style="display:flex;gap:12px;font-size:14.5px;line-height:1.55;color:#B4BEB8">
+                  <span style="color:rgba(255,255,255,.3);flex-shrink:0">&mdash;</span>{{ pt }}
+                </li>
+              </sc-for>
+            </ul>
+          </li>
+        </sc-for>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ SKILLS ============ -->
+  <section id="skills" data-screen-label="Skills" style="position:relative;overflow:hidden;background:#1A2420;border-top:1px solid rgba(255,255,255,.1);padding:clamp(64px,7vw,116px) 0">
+    <div aria-hidden="true" style="position:absolute;bottom:0;left:0;width:min(420px,44vw);height:300px;pointer-events:none;background-image:radial-gradient(rgba(167,188,151,.28) 1px,transparent 1px);background-size:22px 22px;mask-image:radial-gradient(120% 105% at 0% 100%,#000 6%,transparent 64%);-webkit-mask-image:radial-gradient(120% 105% at 0% 100%,#000 6%,transparent 64%)"></div>
+    <div style="position:relative;max-width:1240px;margin:0 auto;padding:0 clamp(20px,4vw,56px)">
+      <div data-reveal="0" style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:clamp(20px,3vw,56px)">
+        <div style="flex:1 1 460px;min-width:min(100%,320px)">
+          <span style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.16em;color:#A7BC97">06 / SKILLS</span>
+          <h2 style="margin-top:16px;font-size:clamp(26px,3.1vw,42px);line-height:1.1;font-weight:700;letter-spacing:-.03em;color:#F5F8F5">Skills &amp; tools</h2>
+        </div>
+        <p style="flex:1 1 320px;min-width:min(100%,280px);font-size:15.5px;line-height:1.65;color:#B4BEB8;max-width:48ch">Listed honestly: hands-on daily with some, comfortable working with others.</p>
+      </div>
+
+      <ul data-reveal="1" style="margin-top:clamp(32px,3.6vw,52px);display:flex;flex-direction:column">
+        <sc-for list="{{ skillGroups }}" as="g" hint-placeholder-count="4">
+          <li style="display:flex;flex-wrap:wrap;gap:10px clamp(24px,4vw,72px);padding:clamp(18px,2vw,26px) 0;border-top:1px solid rgba(255,255,255,.1)">
+            <div style="flex:0 0 190px;min-width:170px">
+              <div style="font-size:15px;font-weight:600;letter-spacing:-.018em;color:#F5F8F5">{{ g.title }}</div>
+              <div style="margin-top:3px;font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.1em;color:#98A29C">{{ g.note }}</div>
+            </div>
+            <ul style="flex:1 1 420px;min-width:min(100%,280px);display:flex;flex-wrap:wrap;gap:6px;align-content:flex-start">
+              <sc-for list="{{ g.items }}" as="t" hint-placeholder-count="6">
+                <li style="font-size:12.5px;font-weight:500;color:#C3CCC7;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);padding:5px 12px;border-radius:100px">{{ t }}</li>
+              </sc-for>
+            </ul>
+          </li>
+        </sc-for>
+      </ul>
+
+      <sc-if value="{{ showCerts }}" hint-placeholder-val="{{ true }}">
+        <div data-reveal="2" style="margin-top:clamp(22px,2.4vw,32px);padding-top:clamp(18px,2vw,26px);border-top:1px solid rgba(255,255,255,.1)">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.14em;color:#A7BC97">CERTIFIED</div>
+          <div style="margin-top:14px;display:flex;flex-wrap:wrap;gap:8px">
+            <sc-for list="{{ certs }}" as="c" hint-placeholder-count="6">
+              <span style="display:inline-flex;align-items:center;gap:8px;font-size:12.5px;color:#C3CCC7;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.08);padding:6px 13px;border-radius:100px">
+                {{ c.t }}<span style="color:#98A29C;font-family:'JetBrains Mono',monospace;font-size:9.5px">{{ c.by }}</span>
+              </span>
+            </sc-for>
+          </div>
+        </div>
+      </sc-if>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section id="contact" data-screen-label="Contact" style="position:relative;overflow:hidden;background:#1A2420;border-top:1px solid rgba(255,255,255,.1);color:#F5F8F5;padding:clamp(64px,7vw,116px) 0 clamp(36px,4vw,54px)">
+    <div aria-hidden="true" style="position:absolute;top:-120px;left:50%;transform:translateX(-50%);width:min(900px,120vw);height:420px;border-radius:50%;background:radial-gradient(ellipse,rgba(167,188,151,.18),transparent 66%);pointer-events:none"></div>
+    <div aria-hidden="true" style="position:absolute;top:-250px;left:50%;transform:translateX(-50%);width:min(680px,110vw);aspect-ratio:1;pointer-events:none;mask-image:linear-gradient(180deg,#000 42%,transparent 78%);-webkit-mask-image:linear-gradient(180deg,#000 42%,transparent 78%)">
+      <svg viewBox="0 0 400 400" width="100%" height="100%" fill="none" stroke="#A7BC97" stroke-width="1">
+        <g style="transform-origin:200px 200px;animation:jsSpin 240s linear infinite">
+          <circle cx="200" cy="200" r="196" stroke-opacity=".22"></circle>
+          <circle cx="200" cy="200" r="148" stroke-opacity=".15" stroke-dasharray="2 9"></circle>
+          <circle cx="200" cy="200" r="100" stroke-opacity=".22"></circle>
+          <circle cx="200" cy="4" r="3.4" fill="#A7BC97" stroke="none"></circle>
+        </g>
+      </svg>
+    </div>
+    <div style="position:relative;max-width:1240px;margin:0 auto;padding:0 clamp(20px,4vw,56px)">
+      <div data-reveal="0" style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:clamp(20px,3vw,56px)">
+        <div style="flex:1 1 460px;min-width:min(100%,320px)">
+          <span style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.16em;color:#A7BC97">07 / CONTACT</span>
+          <h2 style="margin-top:16px;font-size:clamp(26px,3.1vw,42px);line-height:1.1;font-weight:700;letter-spacing:-.03em;color:#F5F8F5;max-width:22ch">Have a complex product? Let's make it simpler.</h2>
+        </div>
+        <p style="flex:1 1 320px;min-width:min(100%,280px);font-size:15.5px;line-height:1.65;color:#B4BEB8;max-width:48ch">I'm open to opportunities where I can work on meaningful products, enterprise experiences, AI-driven interfaces and design systems.</p>
+      </div>
+
+      <div data-reveal="1" style="margin-top:clamp(32px,3.6vw,52px);display:flex;flex-wrap:wrap;align-items:center;gap:12px">
+          <a href="mailto:zeelsapariya@gmail.com" style="display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 28px;border-radius:999px;background:#A7BC97;color:#16201C;font-size:16px;font-weight:600;letter-spacing:-.012em;border:1px solid #A7BC97;transition:transform .25s cubic-bezier(.22,1,.36,1),background .25s" style-hover="color:#16201C;background:#C2D4B4;transform:translateY(-2px)">Let's Work Together</a>
+          <a href="https://www.linkedin.com/in/jill-sapariya-647650177" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 26px;border-radius:999px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.2);color:#F5F8F5;font-size:16px;font-weight:500;transition:border-color .25s,transform .25s,background .25s" style-hover="color:#F5F8F5;background:rgba(255,255,255,.13);transform:translateY(-2px)">LinkedIn</a>
+      </div>
+
+      <ul data-reveal="1" style="margin-top:clamp(40px,4.4vw,64px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:clamp(16px,2vw,32px)">
+        <li style="padding-top:14px;border-top:1px solid rgba(255,255,255,.1)">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.14em;color:#98A29C">EMAIL</div>
+          <a href="mailto:zeelsapariya@gmail.com" style="display:block;margin-top:8px;font-size:15px;font-weight:500;color:#F5F8F5;word-break:break-all" style-hover="color:#A7BC97">zeelsapariya@gmail.com</a>
+        </li>
+        <li style="padding-top:14px;border-top:1px solid rgba(255,255,255,.1)">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.14em;color:#98A29C">PHONE</div>
+          <a href="tel:+919767346723" style="display:block;margin-top:8px;font-size:15px;font-weight:500;color:#F5F8F5" style-hover="color:#A7BC97">+91 9767346723</a>
+        </li>
+        <li style="padding-top:14px;border-top:1px solid rgba(255,255,255,.1)">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.14em;color:#98A29C">LINKEDIN</div>
+          <a href="https://www.linkedin.com/in/jill-sapariya-647650177" target="_blank" rel="noopener" style="display:block;margin-top:8px;font-size:15px;font-weight:500;color:#F5F8F5;word-break:break-all" style-hover="color:#A7BC97">/in/jill-sapariya</a>
+        </li>
+        <li style="padding-top:14px;border-top:1px solid rgba(255,255,255,.1)">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.14em;color:#98A29C">LOCATION</div>
+          <div style="margin-top:8px;font-size:15px;font-weight:500;color:#F5F8F5">India</div>
+        </li>
+      </ul>
+
+      <footer style="margin-top:clamp(44px,5vw,72px);padding-top:24px;border-top:1px solid rgba(255,255,255,.1);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:24px;align-items:start">
+        <div>
+          <div style="font-size:15.5px;font-weight:600;letter-spacing:-.018em;color:#F5F8F5">Jill Sapariya</div>
+          <div style="margin-top:6px;font-size:13.5px;line-height:1.5;color:#98A29C">UI/UX &amp; Product Designer<br />AI-Enabled Design · Enterprise &amp; AI Products</div>
+        </div>
+        <ul style="display:flex;flex-wrap:wrap;gap:8px 20px">
+          <li><a href="#about" style="font-size:13.5px;color:#B4BEB8" style-hover="color:#F5F8F5">About</a></li>
+          <li><a href="#work" style="font-size:13.5px;color:#B4BEB8" style-hover="color:#F5F8F5">Work</a></li>
+          <li><a href="#lab" style="font-size:13.5px;color:#B4BEB8" style-hover="color:#F5F8F5">Demos</a></li>
+          <li><a href="#approach" style="font-size:13.5px;color:#B4BEB8" style-hover="color:#F5F8F5">AI Workflow</a></li>
+          <li><a href="#skills" style="font-size:13.5px;color:#B4BEB8" style-hover="color:#F5F8F5">Skills</a></li>
+        </ul>
+        <div style="font-size:13px;color:#98A29C;justify-self:end;text-align:right">&copy; 2026 Jill Sapariya. All rights reserved.</div>
+      </footer>
+    </div>
+  </section>
+</main>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { menuOpen: false, narrow: false, active: '', progress: 0 };
+
+  constructor(props) {
+    super(props);
+    this.videoRef = React.createRef();
+    this.frameRef = React.createRef();
+    this.iframeRef = React.createRef();
+  }
+
+  componentDidMount() {
+    const v = this.videoRef.current;
+    if (v) {
+      v.muted = true; v.defaultMuted = true; v.volume = 0; v.loop = true;
+      const p = v.play();
+      if (p && p.catch) p.catch(() => {});
+    }
+    this.onScroll = () => {
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      const p = max > 40 ? Math.round((window.scrollY / max) * 200) / 2 : 0;
+      if (p !== this.state.progress) this.setState({ progress: p });
+    };
+    this.onResize = () => {
+      const n = window.innerWidth < 900;
+      if (n !== this.state.narrow) this.setState({ narrow: n, menuOpen: false });
+    };
+    this.fitFrame = () => {
+      const box = this.frameRef.current, frame = this.iframeRef.current;
+      if (!box || !frame) return;
+      const w = box.clientWidth;
+      if (!w) return;
+      const base = w < 720 ? 900 : 1280;
+      const scale = w / base;
+      frame.style.width = base + 'px';
+      frame.style.height = Math.round(base * 0.66) + 'px';
+      frame.style.transform = 'scale(' + scale + ')';
+      box.style.height = Math.round(base * 0.66 * scale) + 'px';
+    };
+    this.fitFrame();
+    setTimeout(this.fitFrame, 400);
+    window.addEventListener('scroll', this.onScroll, { passive: true });
+    window.addEventListener('resize', this.onResize);
+    window.addEventListener('resize', this.fitFrame);
+    this.onScroll(); this.onResize();
+    setTimeout(() => this.wireReveal(), 60);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.onScroll);
+    window.removeEventListener('resize', this.onResize);
+    if (this.fitFrame) window.removeEventListener('resize', this.fitFrame);
+    if (this.sweep) window.removeEventListener('scroll', this.sweep);
+    if (this.io) this.io.disconnect();
+    if (this.so) this.so.disconnect();
+  }
+
+  wireReveal() {
+    if (!('IntersectionObserver' in window)) return;
+    const els = Array.from(document.querySelectorAll('[data-reveal]'));
+    els.forEach(el => {
+      if (el.dataset.revealed) return;
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(14px)';
+      el.style.transition = 'opacity .7s cubic-bezier(.22,1,.36,1), transform .7s cubic-bezier(.22,1,.36,1)';
+      el.style.transitionDelay = (Math.min(+el.dataset.reveal || 0, 6) * 70) + 'ms';
+    });
+    const show = el => {
+      if (el.dataset.revealed) return;
+      el.dataset.revealed = '1';
+      el.style.opacity = '1';
+      el.style.transform = 'none';
+      if (this.io) this.io.unobserve(el);
+    };
+    this.io = new IntersectionObserver(ents => {
+      ents.forEach(e => { if (e.isIntersecting || e.boundingClientRect.top < 0) show(e.target); });
+    }, { rootMargin: '0px 0px -6% 0px', threshold: 0.05 });
+    els.forEach(el => this.io.observe(el));
+
+    this.sweep = () => els.forEach(el => {
+      if (el.dataset.revealed) return;
+      if (el.getBoundingClientRect().top < window.innerHeight * 0.94) show(el);
+    });
+    window.addEventListener('scroll', this.sweep, { passive: true });
+    this.sweep();
+
+    const ids = ['about', 'work', 'lab', 'approach', 'skills', 'contact'];
+    const secs = ids.map(id => document.getElementById(id)).filter(Boolean);
+    this.so = new IntersectionObserver(ents => {
+      ents.forEach(e => { if (e.isIntersecting) this.setState({ active: e.target.id }); });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    secs.forEach(s => this.so.observe(s));
+  }
+
+  renderVals() {
+    const st = this.state;
+    const links = [['About', '#about'], ['Work', '#work'], ['Demos', '#lab'], ['AI Workflow', '#approach'], ['Skills', '#skills']]
+      .map(([label, href]) => ({ label, href, color: st.active && href === '#' + st.active ? '#A7BC97' : 'rgba(238,242,239,.62)' }));
+
+    return {
+      videoRef: this.videoRef,
+      frameRef: this.frameRef,
+      iframeRef: this.iframeRef,
+      showLab: this.props.showLab ?? true,
+      showCerts: this.props.showCerts ?? true,
+      statementAlign: st.narrow ? 'left' : 'right',
+      progress: st.progress + '%',
+      wide: !st.narrow, narrow: st.narrow,
+      menuOpen: st.menuOpen && st.narrow,
+      barTop: st.menuOpen ? 'translateY(3.25px) rotate(45deg)' : 'none',
+      barBottom: st.menuOpen ? 'translateY(-3.25px) rotate(-45deg)' : 'none',
+      toggleMenu: () => this.setState(s => ({ menuOpen: !s.menuOpen })),
+      closeMenu: () => this.setState({ menuOpen: false }),
+      navLinks: links,
+
+      capabilities: [
+        { title: 'Enterprise UX', body: 'Dense information, real workflows, users who live in the product all day.' },
+        { title: 'AI-Enabled Design', body: 'AI-assisted research, ideation and prototyping inside a real design process.' },
+        { title: 'Design Systems', body: 'Reusable patterns, documented components, consistent interaction rules.' },
+        { title: 'Front-End Aware', body: 'Every demo here was designed and built by me — components, states and all.' }
+      ],
+
+      demoNotes: [
+        { k: 'THE PREMISE', v: 'Built end to end — real workflows, real edge cases, nothing simplified for show.' },
+        { k: 'DESIGNED & BUILT', v: 'Layout, component states, empty states and interaction logic — all mine, end to end.' },
+        { k: 'WHAT TO NOTICE', v: 'Column priority in the tables, one status colour language, and actions placed beside the record they act on.' },
+        { k: 'ACCESSIBILITY', v: 'Real buttons, visible focus rings, WCAG-aware contrast and keyboard-reachable controls throughout.' }
+      ],
+
+      clientWork: [
+        { n: '01', title: 'Enterprise DMS', full: 'Document management & document intelligence', category: 'Enterprise Product', desc: 'Designed document listing, details, metadata, document chains, quick actions and workflow states for high-volume users.', tags: ['Enterprise UX', 'Design system'] },
+        { n: '02', title: 'AI Platform Website', full: 'Product marketing & web experience', category: 'Website', desc: 'Translated complex enterprise AI capabilities into structured, accessible and responsive digital experiences.', tags: ['Web design', 'Responsive'] },
+        { n: '03', title: 'MRO', full: 'Maintenance, Repair & Operations', category: 'Enterprise App', desc: 'Operational dashboards and workflows with emphasis on usability, modularity and clarity for enterprise users.', tags: ['Dashboards', 'Data density'] },
+        { n: '04', title: 'AI Analytics', full: 'Real-time data visualisation', category: 'AI Product', desc: 'Intuitive dashboards for real-time data with emphasis on clarity and accessible use of colour.', tags: ['Visualization', 'Accessibility'] },
+        { n: '05', title: 'ITSM', full: 'Intelligent Ticket Management System', category: 'Enterprise App', desc: 'Ticket-management experiences plus responsive HTML email templates for creation, assignment and SLA alerts.', tags: ['SLA states', 'HTML email'] },
+        { n: '06', title: 'Dhyeya', full: 'Mentor-led learning', category: 'E-Learning', desc: 'Web and mobile UX flows centred on mentor guidance, community learning and course tracking.', tags: ['Mobile UX', 'Community'] },
+        { n: '07', title: 'Upadhi', full: 'Job portal & resume builder', category: 'Consumer Platform', desc: 'User-centred onboarding, resume upload and quick-apply experiences, plus responsive email templates.', tags: ['Onboarding', 'Quick apply'] },
+        { n: '08', title: 'RightFit', full: 'Recruiter workflow', category: 'Recruitment', desc: 'Structured dashboards for candidate filtering and analytics, improving recruiter workflow clarity.', tags: ['Filtering', 'Analytics'] }
+      ],
+
+      aiSteps: [
+        { n: '01', title: 'Understand & Research', items: ['competitor research', 'information gathering', 'summarization', 'problem framing'] },
+        { n: '02', title: 'Ideate & Explore', items: ['explore concepts', 'generate directions', 'test variations', 'alternative IA approaches'] },
+        { n: '03', title: 'Design & Prototype', items: ['visual exploration', 'UI concepts', 'content generation', 'rapid prototyping'] },
+        { n: '04', title: 'Refine & Deliver', items: ['repetitive tasks', 'content refinement', 'accessibility checks', 'handoff support'] }
+      ],
+      aiChain: ['Research', 'AI-assisted exploration', 'Design thinking', 'Prototype', 'Validate', 'Refine', 'Deliver']
+        .map((label, i, arr) => {
+          const last = i === arr.length - 1;
+          const ai = i === 1;
+          return {
+            label,
+            fg: ai ? '#EEF2EF' : '#C3CCC7',
+            bg: ai ? 'rgba(167,188,151,.2)' : 'rgba(255,255,255,.05)',
+            border: ai ? 'rgba(167,188,151,.5)' : 'rgba(255,255,255,.1)',
+            arrow: last ? '' : '→'
+          };
+        }),
+
+      experience: [
+        {
+          company: 'N-Labs.AI / Kavion.ai', role: 'Developer / UI/UX Designer', dates: 'OCT 2022 — PRESENT',
+          points: [
+            'Led UI/UX from user flows and wireframes through high-fidelity UI and prototypes across enterprise and AI-driven products.',
+            'Designed a document-management product, platform website, webinar landing pages and responsive HTML email templates.',
+            'Built reusable UI patterns and design-system documentation; contributed to typography and brand guidelines.',
+            'Contributed to front-end implementation in HTML, CSS, JavaScript, React.js and Next.js, and to accessibility validation.'
+          ]
+        },
+        {
+          company: 'Reddys Group of Education', role: 'Manager', dates: 'JUL 2022 — OCT 2022',
+          points: ['Oversaw academic operations and process coordination.', 'Worked on process improvement and communication across staff and students.']
+        },
+        {
+          company: 'Insistence Technologies', role: 'UI/UX Developer Intern', dates: 'MAY 2019 — JUN 2019',
+          points: ['Supported UI/UX and web development with HTML, CSS and JavaScript.', 'Created responsive wireframes and prototypes for brand-aligned interfaces.']
+        }
+      ],
+
+      skillGroups: [
+        { title: 'Product & UX', note: 'CORE', items: ['User Flows', 'Information Architecture', 'Wireframing', 'Prototyping', 'Responsive Design', 'Design Systems', 'Enterprise UX', 'Accessibility / WCAG'] },
+        { title: 'AI & Emerging', note: 'DAILY', items: ['AI-Assisted UX', 'AI Ideation', 'AI Research', 'AI Prototyping', 'ChatGPT', 'Claude', 'Midjourney', 'Perplexity', 'Copilot'] },
+        { title: 'UI & Visual', note: 'HANDS-ON', items: ['Figma', 'Adobe XD', 'Framer', 'Canva', 'Adobe Express', 'Typography', 'Interaction Design', 'Brand Guidelines'] },
+        { title: 'Front-End', note: 'COMFORTABLE WITH', items: ['HTML', 'CSS', 'Sass', 'JavaScript', 'React.js', 'Next.js', 'Tailwind', 'Bootstrap', 'React Native', 'Git'] }
+      ],
+
+      certs: [
+        { t: 'Foundations of UX Design', by: 'GOOGLE' },
+        { t: 'Using AI in the UX Design Process', by: 'LINKEDIN' },
+        { t: 'Enterprise Design Thinking', by: 'IBM' },
+        { t: 'Digital Skills: User Experience', by: 'ACCENTURE' },
+        { t: 'The 33 Laws of Typography', by: 'LINKEDIN' },
+        { t: 'Empathy in UX Design', by: 'LINKEDIN' },
+        { t: 'SAP Fiori Basics', by: 'SAP' },
+        { t: 'Canva for Work', by: 'CANVA' },
+        { t: 'Git & GitHub Essentials', by: 'GITHUB' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>
